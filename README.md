@@ -156,7 +156,6 @@ the `Artist` class, a `find_by_name` method might look like this:
 
 ```ruby
 class Artist
-
   @@artists = []
 
   attr_accessor :name
@@ -170,7 +169,7 @@ class Artist
   end
 
   def self.find_by_name(name)
-    @@artists.detect {|a| a.name == name}
+    @@artists.detect { |a| a.name == name }
   end
 end
 ```
@@ -241,18 +240,18 @@ Let's take a look at the `.initialize` methods of both the `Song` and `Artist` c
 #### `lib/song.rb`
 
 ```ruby
- def initialize
-    @@songs << self
-  end
+def initialize
+  @@songs << self
+end
 ```
 
 #### `lib/artist.rb`
 
 ```ruby
 def initialize
-    @@artists << self
-    @songs = []
-  end
+  @@artists << self
+  @songs = []
+end
 ```
 
 See the repetition? Both methods push the instance on which they are being
@@ -279,16 +278,16 @@ Lucky for us, we already have class methods that wrap these class variables:
 #### `lib/song.rb`
 
 ```ruby
- def self.all
-    @@songs
- end
+def self.all
+  @@songs
+end
 ```
 
 #### `lib/artist.rb`
 
 ```ruby
 def self.all
-    @@artists
+  @@artists
 end
 ```
 
@@ -301,7 +300,7 @@ inside the `.initialize` method? Take a look below:
 
 ```ruby
 def initialize
-    self.class.all << self
+  self.class.all << self
 end
 ```
 
@@ -309,8 +308,8 @@ end
 
 ```ruby
 def initialize
-    self.class.all << self
-    @songs = []
+  self.class.all << self
+  @songs = []
 end
 ```
 

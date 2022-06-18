@@ -1,16 +1,13 @@
-require_relative './spec_helper'
+require_relative "./spec_helper"
 
 describe Artist do
-  before(:each) do
-    Artist.reset_all
-  end
+  before(:each) { Artist.reset_all }
 
   # What's the difference between let! and let?
   # Why do we need it? Change it to the non ! version
   # and see what test suddenly fails.
   # http://betterspecs.org/#let
-  let!(:artist){Artist.new}
-
+  let!(:artist) { Artist.new }
 
   it "can be initialized" do
     expect(artist).to be_an_instance_of(Artist)
@@ -21,8 +18,8 @@ describe Artist do
     expect(artist.name).to eq("Adele")
   end
 
-  it 'converts its name to a url friendly parameter' do
-    artist.name = 'Miley Cyrus'
+  it "converts its name to a url friendly parameter" do
+    artist.name = "Miley Cyrus"
     expect(artist.to_param).to eq("miley-cyrus")
   end
 
@@ -36,8 +33,8 @@ describe Artist do
     end
 
     it "can find an artist by name" do
-      artist.name = 'Miley Cyrus'
-      expect(Artist.find_by_name('Miley Cyrus')).to eq(artist)
+      artist.name = "Miley Cyrus"
+      expect(Artist.find_by_name("Miley Cyrus")).to eq(artist)
     end
 
     it "can reset the artists that have been created" do
@@ -47,7 +44,7 @@ describe Artist do
   end
 
   describe "with songs" do
-    let(:song){Song.new}
+    let(:song) { Song.new }
 
     it "can have a song added" do
       artist.add_song(song)
@@ -59,5 +56,4 @@ describe Artist do
       expect(artist.songs.count).to eq(2)
     end
   end
-
 end
